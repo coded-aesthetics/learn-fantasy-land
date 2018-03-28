@@ -1,0 +1,18 @@
+{
+  "name": "sanc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "watch": {
+    "go": "{src}/*.js"
+  },
+  "scripts": {
+    "go": "node src/main.js",
+    "watch": "npm-watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  }
+}
