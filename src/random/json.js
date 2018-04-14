@@ -3,14 +3,15 @@ const R = require("ramda");
 
 const convertRawDataToInputData = version => raw => {
     // if parseInt(version) is greater than 3 return a left
-    /*S.ifElse(
-        S.allPass(!S.isNothing, S.gte(4)),
+    let a = S.maybeToEither("version (raw.v) is not a valid number")(S.parseInt(10, version))
+    let b = S.ifElse(
+        S.gte(S.Right(4)), 
         x => S.Left("Versions greater than 3 not supported"),
-        S.Right,
-        S.parseInt(10, version)
+        S.I,
+        a
     )
-    S.gte(4)(S.parseInt(10, version))*/
-    return version + raw.v
+    //console.log(b)
+    return S.map(x => (x*x)+"test", b)
 }
 
 const getVersionString = R.compose(
@@ -24,7 +25,7 @@ const processQRCode = (qrCodeJSON) => {
     let raw = tryParseJSON(qrCodeJSON)
     let version = getVersionString(raw)
 
-    return S.ap(S.map(convertRawDataToInputData)(version))(raw)
+    return S.join(S.ap(S.map(convertRawDataToInputData)(version))(raw))
 }
 
-console.log(processQRCode('{"v":"1 ", "test": "test"}'))
+console.log(processQRCode('{"v":" 3", "test": "test"}'))
