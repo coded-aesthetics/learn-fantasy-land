@@ -1,5 +1,5 @@
-var S = require("../node_modules/sanctuary");
-const R = require("../node_modules/ramda");
+var S = require("sanctuary");
+const R = require("ramda");
 
 console.log('')
 console.log('                                     SETOID                             ')
@@ -93,6 +93,7 @@ console.log("S.ap(s => n => s.slice(0, n)) (s => s.length/2) ('Haskell') = ", S.
 console.log("S.ap(s => a => a.map((x, idx) => x + idx)) (s => s.split('')) ('Haskell') =", S.ap(s => a => a.map((x, idx) => x + idx)) (s => s.split('')) ('Haskell'))
 console.log('S.ap(s => a => a.split("")) (s => s + "test") (3) =', S.ap(s => a => a.split("")) (s => s + "test") (3));
 console.log("the input value ('Haskell') is passed to the second function, the output of which is passed to the first function")
+console.log('S.ap(S.ap(S.ap(S.Just(x => y => z => x * y * z), S.Just(3)), S.Just(2)), S.Just(5)) =', S.ap(S.ap(S.ap(S.Just(x => y => z => x * y * z), S.Just(3)), S.Just(2)), S.Just(5)))
 console.log("-> Maybe")
 console.log('S.ap(S.Just(x => x * x), S.Just(20)) =', S.ap(S.Just(x => x * x), S.Just(20)));
 console.log("-> Either")
