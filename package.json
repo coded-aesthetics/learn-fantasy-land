@@ -13,6 +13,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ramda": "^0.25.0"
+    "axios": "^0.18.0",
+    "fluture": "^8.0.2",
+    "fluture-sanctuary-types": "^2.0.0",
+    "ramda": "^0.25.0",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
+    "sanctuary": "^0.14.1",
+    "sanctuary-def": "^0.15.0",
+    "sanctuary-type-identifiers": "^2.0.1"
   }
 }

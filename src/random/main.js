@@ -1,5 +1,5 @@
-var S = require("../node_modules/sanctuary");
-const R = require("../node_modules/ramda");
+var S = require("sanctuary");
+const R = require("ramda");
 
 console.log('')
 console.log('                                     SETOID                             ')
@@ -44,7 +44,7 @@ console.log('S.map(S.parseInt(16), {a: "3", b: "4", c: "X"}) =', S.map(S.parseIn
 
 global.nanCheck = n => isNaN(n) ? S.Left('Result is not a number') : S.Right(n)
 
-global.div = R.curry((a, b) => 
+global.div = R.curry((a, b) =>
   b === 0 ? S.Left('Cant divide by zero')
           : S.Right(R.divide(a, b))
 )
@@ -82,6 +82,9 @@ console.log('')
 console.log("---------------------------------  the ap method -----------------------------------------")
 console.log("-> Array")
 console.log("S.ap([x => x+1, x => x*x], [1,2,3,4]) =", S.ap([x => x+1, x => x*x], [1,2,3,4]));
+console.log("ap in relation to sequence")
+console.log("S.ap([x => x*x, x => x-1, x => 100])([3]) =", S.ap([x => x*x, x => x-1, x => 100])([3]));
+console.log("S.sequence(Array, [x => x*x, x => x-1, x => 100])(3) =", S.sequence(Array, [x => x*x, x => x-1, x => 100])(3))
 console.log("-> Object")
 console.log('S.ap({a: x => S.parseInt(16)(x).value }, {a: "3", b: "4", c: "6"}) =', S.ap({a: x => S.parseInt(16)(x).value }, {a: "3", b: "4", c: "6"}));
 console.log('S.ap({x: Math.sqrt, y: S.add(1), z: S.sub(1)}, {w: 4, x: 4, y: 4}) =', S.ap({x: Math.sqrt, y: S.add(1), z: S.sub(1)}, {w: 4, x: 4, y: 4}));
@@ -90,6 +93,7 @@ console.log("S.ap(s => n => s.slice(0, n)) (s => s.length/2) ('Haskell') = ", S.
 console.log("S.ap(s => a => a.map((x, idx) => x + idx)) (s => s.split('')) ('Haskell') =", S.ap(s => a => a.map((x, idx) => x + idx)) (s => s.split('')) ('Haskell'))
 console.log('S.ap(s => a => a.split("")) (s => s + "test") (3) =', S.ap(s => a => a.split("")) (s => s + "test") (3));
 console.log("the input value ('Haskell') is passed to the second function, the output of which is passed to the first function")
+console.log('S.ap(S.ap(S.ap(S.Just(x => y => z => x * y * z), S.Just(3)), S.Just(2)), S.Just(5)) =', S.ap(S.ap(S.ap(S.Just(x => y => z => x * y * z), S.Just(3)), S.Just(2)), S.Just(5)))
 console.log("-> Maybe")
 console.log('S.ap(S.Just(x => x * x), S.Just(20)) =', S.ap(S.Just(x => x * x), S.Just(20)));
 console.log("-> Either")
@@ -102,6 +106,8 @@ console.log('S.add(2, 3) =', S.add(2, 3))
 console.log('-> Examples of using lift2 with Arrays')
 console.log('S.lift2(S.add, [1], [5]) =', S.lift2(S.add, [1], [5]))
 console.log('S.lift2(S.add, [1,2], [5,9]) =', S.lift2(S.add, [1,2], [5,9]))
+console.log('-> Examples of using lift2 with Objects')
+console.log('S.lift2(S.add, {a:2}, {a:3, b:2}) =', S.lift2(S.add, {a:2}, {a:3, b:2}));
 console.log("-------------------------------------------------------------------------------------------")
 console.log('')
 console.log("S.Either['@@type'] =", S.Either['@@type'])
